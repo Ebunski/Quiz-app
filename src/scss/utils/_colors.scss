@@ -1,0 +1,55 @@
+//colors
+$secondary-color: #ff9800 !default;
+$primary-color: #673ab7 !default;
+$background-color: #e3f2fd;
+$surface-color: #fff;
+
+$on-primary: #fff;
+$on-secondary: #fff;
+$on-background: #000;
+$on-surface: #000;
+$sub-text: hsl(0, 0%, 20%);
+$light-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+$dark-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+:root {
+  --secondary-color: #{$secondary-color};
+  --primary-color: #{$primary-color};
+  --background-color: #{$background-color};
+  --surface-color: #{$surface-color};
+  --on-primary: #{$on-primary};
+  --on-secondary: #{$on-secondary};
+  --on-background: #{$on-background};
+  --on-surface: #{$on-surface};
+  --sub-text-color: #{$sub-text};
+  --light-shadow: #{$light-shadow};
+  --dark-shadow: #{$dark-shadow};
+}
+///dark themes
+
+$secondary-color-dark: #ffcc80 !default;
+$primary-color-dark: #9fa8da !default;
+$background-color-dark: #000;
+$surface-color-dark: hsl(0, 0%, 10%);
+
+$on-primary-dark: #000;
+$on-secondary-dark: #000;
+$on-background-dark: #fff;
+$on-surface-dark: #fff;
+$sub-text-dark: hsl(0, 0%, 80%);
+$light-shadow-dark: 6px 6px 16px 0 rgba(0, 0, 0, 0.51),
+  -6px -6px 16px 0 rgba(255, 255, 255, 0.05);
+$dark-shadow-dark: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+.dark {
+  --secondary-color: #{$secondary-color-dark};
+  --primary-color: #{$primary-color-dark};
+  --background-color: #{$background-color-dark};
+  --surface-color: #{$surface-color-dark};
+  --on-primary: #{$on-primary-dark};
+  --on-secondary: #{$on-secondary-dark};
+  --on-background: #{$on-background-dark};
+  --on-surface: #{$on-surface-dark};
+  --sub-text-color: #{$sub-text-dark};
+  --light-shadow: #{$light-shadow-dark};
+  --dark-shadow: #{$dark-shadow-dark};
+}
