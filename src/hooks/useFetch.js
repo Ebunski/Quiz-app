@@ -7,31 +7,23 @@ export default function useFetch(defaultUrl = "", options = null) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  let isMounted = useRef(true);
   async function getData() {
-    console.log(url);
-    setLoading(true);
     try {
-      if (isMounted.current) {
-        const { data } = await axios.get(url);
-        setResult(data);
-        setError(null);
-      }
+      setLoading(true);
+      const { data } = await axios.get(url);
+      setResult(data);
+      setError(null);
     } catch (error) {
-      if (isMounted.current) {
-        setError(error.response);
-        setResult([]);
-        console.log(error);
-      }
+      setError(error.response);
+      setResult([]);
+      console.log(error);
     } finally {
-      if (isMounted.current) {
-        setLoading(false);
-      }
+      setLoading(false);
     }
   }
   useEffect(() => {
     getData();
-    return () => (isMounted.current = false);
+    console.log("getting data...");
     // eslint-disable-next-line
   }, [url, options]);
 

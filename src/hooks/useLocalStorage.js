@@ -1,20 +1,18 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 
-//Hook should work just like useState("") but could also get and store data in localStorage.
-//therefore it should return state and function to set state.
 export default function useLocalStorage(key = "", initialValue = "") {
-  const [data, setData] = useState(() => getData()); //function version so we only call in once
+  const [data, setData] = useState(() => getData());
 
-  //user inserts a key and initial value just like in useState.
   function getData() {
-    const savedValue = JSON.parse(localStorage.getItem(key));
-    if (savedValue) return savedValue;
-    if (initialValue instanceof Function) return initialValue(); //useState can accept function.
+    const savedValue = localStorage.getItem(key);
+    if (savedValue) return JSON.parse(savedValue);
+    if (initialValue instanceof Function) return initialValue();
     return initialValue;
   }
 
   const storeData = useCallback(() => {
     localStorage.setItem(key, JSON.stringify(data));
+    console.log("setting local...");
   }, [key, data]);
 
   useEffect(() => {
