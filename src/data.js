@@ -1,0 +1,206 @@
+export const questionsBank = [
+  {
+    id: 1,
+    question:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque fuga facilis quisquam corrupti, porro ad? Quis facilis delectus quas itaque?",
+    options: {
+      a: "Lorem, ipsum dolor",
+      b: "Lorem, ipsum dolor",
+      c: "Lorem, ipsum dolor",
+      d: "Lorem, ipsum dolor",
+    },
+  },
+  {
+    id: 2,
+    question:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque fuga facilis quisquam corrupti, porro ad? Quis facilis delectus quas itaque?",
+    options: {
+      a: "Lorem, ipsum dolor",
+      b: "Lorem, ipsum dolor",
+      c: "Lorem, ipsum dolor",
+      d: "Lorem, ipsum dolor",
+    },
+  },
+];
+
+const trivia_categories = [
+  { id: 9, name: "General Knowledge" },
+  { id: 10, name: "Entertainment: Books" },
+  { id: 11, name: "Entertainment: Film" },
+  { id: 12, name: "Entertainment: Music" },
+  { id: 13, name: "Entertainment: Musicals & Theatres" },
+  { id: 14, name: "Entertainment: Television" },
+  { id: 15, name: "Entertainment: Video Games" },
+  { id: 16, name: "Entertainment: Board Games" },
+  { id: 17, name: "Science & Nature" },
+  { id: 18, name: "Science: Computers" },
+  { id: 19, name: "Science: Mathematics" },
+  { id: 20, name: "Mythology" },
+  { id: 21, name: "Sports" },
+  { id: 22, name: "Geography" },
+  { id: 23, name: "History" },
+  { id: 24, name: "Politics" },
+  { id: 25, name: "Art" },
+  { id: 26, name: "Celebrities" },
+  { id: 27, name: "Animals" },
+  { id: 28, name: "Vehicles" },
+  { id: 29, name: "Entertainment: Comics" },
+  { id: 30, name: "Science: Gadgets" },
+  { id: 31, name: "Entertainment: Japanese Anime & Manga" },
+  { id: 32, name: "Entertainment: Cartoon & Animations" },
+];
+
+const all = {
+  overall: {
+    total_num_of_questions: 16045,
+    total_num_of_pending_questions: 8953,
+    total_num_of_verified_questions: 4072,
+    total_num_of_rejected_questions: 3020,
+  },
+  categories: {
+    9: {
+      total_num_of_questions: 3460,
+      total_num_of_pending_questions: 2246,
+      total_num_of_verified_questions: 300,
+      total_num_of_rejected_questions: 914,
+    },
+    10: {
+      total_num_of_questions: 410,
+      total_num_of_pending_questions: 257,
+      total_num_of_verified_questions: 97,
+      total_num_of_rejected_questions: 56,
+    },
+    11: {
+      total_num_of_questions: 906,
+      total_num_of_pending_questions: 569,
+      total_num_of_verified_questions: 246,
+      total_num_of_rejected_questions: 91,
+    },
+    12: {
+      total_num_of_questions: 1001,
+      total_num_of_pending_questions: 496,
+      total_num_of_verified_questions: 364,
+      total_num_of_rejected_questions: 141,
+    },
+    13: {
+      total_num_of_questions: 115,
+      total_num_of_pending_questions: 67,
+      total_num_of_verified_questions: 31,
+      total_num_of_rejected_questions: 17,
+    },
+    14: {
+      total_num_of_questions: 599,
+      total_num_of_pending_questions: 341,
+      total_num_of_verified_questions: 170,
+      total_num_of_rejected_questions: 88,
+    },
+    15: {
+      total_num_of_questions: 3282,
+      total_num_of_pending_questions: 1663,
+      total_num_of_verified_questions: 945,
+      total_num_of_rejected_questions: 674,
+    },
+    16: {
+      total_num_of_questions: 210,
+      total_num_of_pending_questions: 118,
+      total_num_of_verified_questions: 59,
+      total_num_of_rejected_questions: 33,
+    },
+    17: {
+      total_num_of_questions: 719,
+      total_num_of_pending_questions: 399,
+      total_num_of_verified_questions: 228,
+      total_num_of_rejected_questions: 92,
+    },
+    18: {
+      total_num_of_questions: 561,
+      total_num_of_pending_questions: 290,
+      total_num_of_verified_questions: 159,
+      total_num_of_rejected_questions: 112,
+    },
+    19: {
+      total_num_of_questions: 299,
+      total_num_of_pending_questions: 143,
+      total_num_of_verified_questions: 52,
+      total_num_of_rejected_questions: 104,
+    },
+    20: {
+      total_num_of_questions: 157,
+      total_num_of_pending_questions: 86,
+      total_num_of_verified_questions: 57,
+      total_num_of_rejected_questions: 14,
+    },
+    21: {
+      total_num_of_questions: 645,
+      total_num_of_pending_questions: 432,
+      total_num_of_verified_questions: 132,
+      total_num_of_rejected_questions: 81,
+    },
+    22: {
+      total_num_of_questions: 658,
+      total_num_of_pending_questions: 286,
+      total_num_of_verified_questions: 275,
+      total_num_of_rejected_questions: 97,
+    },
+    23: {
+      total_num_of_questions: 798,
+      total_num_of_pending_questions: 361,
+      total_num_of_verified_questions: 308,
+      total_num_of_rejected_questions: 129,
+    },
+    24: {
+      total_num_of_questions: 220,
+      total_num_of_pending_questions: 115,
+      total_num_of_verified_questions: 59,
+      total_num_of_rejected_questions: 46,
+    },
+    25: {
+      total_num_of_questions: 151,
+      total_num_of_pending_questions: 103,
+      total_num_of_verified_questions: 29,
+      total_num_of_rejected_questions: 19,
+    },
+    26: {
+      total_num_of_questions: 211,
+      total_num_of_pending_questions: 120,
+      total_num_of_verified_questions: 52,
+      total_num_of_rejected_questions: 39,
+    },
+    27: {
+      total_num_of_questions: 253,
+      total_num_of_pending_questions: 147,
+      total_num_of_verified_questions: 75,
+      total_num_of_rejected_questions: 31,
+    },
+    28: {
+      total_num_of_questions: 239,
+      total_num_of_pending_questions: 135,
+      total_num_of_verified_questions: 71,
+      total_num_of_rejected_questions: 33,
+    },
+    29: {
+      total_num_of_questions: 151,
+      total_num_of_pending_questions: 68,
+      total_num_of_verified_questions: 66,
+      total_num_of_rejected_questions: 17,
+    },
+    30: {
+      total_num_of_questions: 84,
+      total_num_of_pending_questions: 51,
+      total_num_of_verified_questions: 24,
+      total_num_of_rejected_questions: 9,
+    },
+    31: {
+      total_num_of_questions: 632,
+      total_num_of_pending_questions: 291,
+      total_num_of_verified_questions: 184,
+      total_num_of_rejected_questions: 157,
+    },
+    32: {
+      total_num_of_questions: 284,
+      total_num_of_pending_questions: 169,
+      total_num_of_verified_questions: 89,
+      total_num_of_rejected_questions: 26,
+    },
+  },
+};

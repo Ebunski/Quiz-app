@@ -1,17 +1,17 @@
 import React from "react";
-import Header from "./components/Header"
-import Main from "./components/Main"
+import WelcomePage from "./pages/WelcomePage";
+import QuizPage from "./pages/QuizPage";
+import CongratsPage from "./pages/CongratsPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-
-export default function App(){
-    return(
-    <>
-        <Header />
-        <Main />
-
-
-        
-
-    </>
-    )
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<WelcomePage />} />
+        <Route path="quiz" element={<QuizPage />} />
+        <Route path="congrats" element={<CongratsPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
