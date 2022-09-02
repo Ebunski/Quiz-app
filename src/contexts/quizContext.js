@@ -5,6 +5,10 @@ import { categories, difficulty } from "../data";
 const QuizContext = createContext();
 
 export const QuizProvider = ({ children }) => {
+  function getQuestions({ category, difficulty }) {
+    const url = `https://opentdb.com/api.php?amount=20&category=${category}&difficulty=${difficulty}&type=multiple`;
+  }
+
   return (
     <QuizContext.Provider
       value={{
