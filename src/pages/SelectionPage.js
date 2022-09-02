@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import { useQuizContext } from "../contexts/quizContext";
 
 export default function SelectionPage() {
-  const { categories, difficulty } = useQuizContext();
+  const [selection, setSelection] = useState({
+    category: "",
+    difficulty: "",
+  });
+
+  const { categories, difficulty, handleSelection } = useQuizContext();
   const categoryList = categories.map((x) => (
-    <option key={x.id} id={x.id} value={x.name}>
+    <option key={x.id} value={x.id}>
       {x.name}
     </option>
   ));
@@ -13,10 +18,6 @@ export default function SelectionPage() {
       {x}
     </option>
   ));
-  const [selection, setSelection] = useState({
-    category: "",
-    difficulty: "",
-  });
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -28,7 +29,7 @@ export default function SelectionPage() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(selection);
+    handleSelection(selection);
     setSelection({ category: "", difficulty: "" });
   }
 

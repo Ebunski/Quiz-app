@@ -1,36 +1,39 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
-export default function useFetch(url = "", options = null) {
+export default function useFetch(defaultUrl = "", options = null) {
+  const [url, setUrl] = useState(defaultUrl);
   const [result, setResult] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  let isMounted = true;
+  let isMounted = useRef(true);
   async function getData() {
+    console.log(url);
     setLoading(true);
     try {
-      if (isMounted) {
+      if (isMounted.current) {
         const { data } = await axios.get(url);
         setResult(data);
         setError(null);
       }
     } catch (error) {
-      if (isMounted) {
-        setError(error.message);
+      if (isMounted.current) {
+        setError(error.response);
         setResult([]);
         console.log(error);
       }
     } finally {
-      if (isMounted) {
+      if (isMounted.current) {
         setLoading(false);
       }
     }
   }
   useEffect(() => {
     getData();
-    return () => (isMounted = false);
+    return () => (isMounted.current = false);
+    // eslint-disable-next-line
   }, [url, options]);
 
-  return { result, loading, error, getData };
+  return { result, loading, error, getData, setUrl };
 }
