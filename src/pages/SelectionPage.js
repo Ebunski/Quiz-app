@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useQuizContext } from "../contexts/quizContext";
+import { useNavigate } from "react-router-dom";
 
 export default function SelectionPage() {
   const [selection, setSelection] = useState({
     category: "",
     difficulty: "",
   });
-
+  const navigate = useNavigate();
   const { categories, difficulty, handleSelection } = useQuizContext();
   const categoryList = categories.map((x) => (
     <option key={x.id} value={x.id}>
@@ -31,6 +32,7 @@ export default function SelectionPage() {
     event.preventDefault();
     handleSelection(selection);
     setSelection({ category: "", difficulty: "" });
+    navigate("/quiz");
   }
 
   return (

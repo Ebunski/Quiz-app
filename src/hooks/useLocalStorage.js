@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
+import PropTypes from "prop-types";
 
 export default function useLocalStorage(key = "", initialValue = "") {
   const [data, setData] = useState(() => getData());
@@ -21,3 +22,4 @@ export default function useLocalStorage(key = "", initialValue = "") {
 
   return [data, setData];
 }
+

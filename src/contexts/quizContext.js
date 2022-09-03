@@ -9,9 +9,9 @@ export const QuizProvider = ({ children }) => {
   let url = "https://opentdb.com/api.php?amount=10&type=multiple";
   const { result, loading, error, setUrl } = useFetch(url);
   const [data, setData] = useLocalStorage("questions-bank", result);
+  const response = data.results;
+  const code = data.response_code;
 
-  // console.log(result);
-  // console.log(data);
   function handleSelection({ category, difficulty }) {
     url = `https://opentdb.com/api.php?amount=20${
       category && `&category=${category}`
@@ -19,8 +19,9 @@ export const QuizProvider = ({ children }) => {
     setUrl(url);
   }
   useEffect(() => {
-    console.log("ran");
+    console.log("syncing with local storage...");
     setData(result);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [result]);
 
   return (
@@ -28,7 +29,7 @@ export const QuizProvider = ({ children }) => {
       value={{
         categories,
         difficulty,
-        data,
+        response,
         loading,
         error,
         handleSelection,

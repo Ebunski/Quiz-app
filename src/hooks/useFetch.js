@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 
 export default function useFetch(defaultUrl = "", options = null) {
   const [url, setUrl] = useState(defaultUrl);
@@ -28,4 +29,8 @@ export default function useFetch(defaultUrl = "", options = null) {
   }, [url, options]);
 
   return { result, loading, error, getData, setUrl };
+}
+
+useFetch.propTypes = {
+  defaultUrl: PropTypes.string.isRequired,
 }
