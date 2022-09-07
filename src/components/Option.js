@@ -7,19 +7,19 @@ export default function Option({ value, name, currentChoice, correctAnswer }) {
   const style = {
     color:
       (value === correctAnswer && "green") ||
-      (value === currentChoice && value !== correctAnswer && "red"),
+      (currentChoice === value && value !== correctAnswer && "red"),
   };
   return (
     <label>
       <input
-        style={showAnswer && style}
         type="radio"
         name={name}
         onChange={handleChange}
         value={value}
         checked={currentChoice === value}
+        disabled={showAnswer}
       />
-      {value}
+      <span style={showAnswer ? style : {}}>{value}</span>
     </label>
   );
 }

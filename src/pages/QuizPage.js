@@ -4,7 +4,7 @@ import Error from "../components/Error";
 import { useQuizContext } from "../contexts/quizContext";
 
 export default function QuizPage() {
-  const { response, handleSubmit, formData } = useQuizContext();
+  const { response, handleSubmit, formData, handleRestart } = useQuizContext();
 
   if (!response) {
     return <Error type="network" />;
@@ -19,9 +19,14 @@ export default function QuizPage() {
     />
   ));
   return (
-    <form onSubmit={handleSubmit}>
-      {oneToTwenty}
-      <button>Submit</button>{" "}
-    </form>
+    <>
+      <form onSubmit={handleSubmit}>
+        {oneToTwenty}
+        <button type="submit">Submit</button>
+      </form>
+      <div>
+        <button onClick={handleRestart}>Restart</button>
+      </div>
+    </>
   );
 }

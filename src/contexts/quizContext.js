@@ -9,7 +9,7 @@ export const QuizProvider = ({ children }) => {
   const { result, loading, error, setUrl } = useFetch();
   const [data, setData] = useLocalStorage("questions-bank", result);
   const [showAnswer, setShowAnswer] = useState(false);
-  const [formData, setFormData] = useState({
+  const initialForm = {
     q1: "",
     q2: "",
     q3: "",
@@ -20,7 +20,8 @@ export const QuizProvider = ({ children }) => {
     q8: "",
     q9: "",
     q10: "",
-  });
+  };
+  const [formData, setFormData] = useState(initialForm);
 
   useEffect(() => {
     if (result !== {}) {
@@ -64,6 +65,12 @@ export const QuizProvider = ({ children }) => {
     console.log(correctAnswers);
     evaluateAnswers();
   }
+  function handleRestart() {
+    window.location.pathname = "/selection";
+    setShowAnswer(false);
+    setFormData(initialForm);
+    setData([]);
+  }
 
   return (
     <QuizContext.Provider
@@ -78,6 +85,7 @@ export const QuizProvider = ({ children }) => {
         handleSelection,
         handleChange,
         handleSubmit,
+        handleRestart,
       }}
     >
       {children}
