@@ -26,7 +26,7 @@ export const categories = [
 ];
 export const difficulty = ["easy", "medium", "hard"];
 
-const response = {
+const data = {
   response_code: 0,
   results: [
     {

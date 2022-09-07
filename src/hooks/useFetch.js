@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import PropTypes from "prop-types";
 
-export default function useFetch(defaultUrl = "", options = null) {
-  const [url, setUrl] = useState(defaultUrl);
+export default function useFetch() {
+  const [url, setUrl] = useState("");
   const [result, setResult] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const runEffect = useRef(false);
 
   async function getData() {
     try {
@@ -23,14 +24,14 @@ export default function useFetch(defaultUrl = "", options = null) {
     }
   }
   useEffect(() => {
-    getData();
-    console.log("getting data...");
+    if (runEffect.current) {
+      getData();
+      console.log("getting data...");
+    }
+
+    runEffect.current = true;
     // eslint-disable-next-line
-  }, [url, options]);
+  }, [url]);
 
   return { result, loading, error, getData, setUrl };
-}
-
-useFetch.propTypes = {
-  defaultUrl: PropTypes.string.isRequired,
 }
