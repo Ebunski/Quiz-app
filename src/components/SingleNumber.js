@@ -9,6 +9,7 @@ export default function SingleNumber({
   question,
   correct_answer,
   incorrect_answers,
+  number,
   ...form
 }) {
   function escapeHtml(str) {
@@ -39,8 +40,10 @@ export default function SingleNumber({
 
   return (
     <div style={{ marginBlock: "30px" }}>
+      <p>Question {number} of 10 </p>
       <Question question={decodedQuestion} />
       {optionsList}
+      <button>Check</button>
     </div>
   );
 }
