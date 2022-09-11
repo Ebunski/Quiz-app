@@ -1,0 +1,36 @@
+@use "../../scss/style.scss" as *;
+
+.welcome {
+  @include flex(column, center);
+  min-height: 100vh;
+  &__title {
+    font-weight: $font-heavy;
+    padding-bottom: $spacing-2xl;
+    color: var(--primary-color);
+  }
+  &__text {
+    color: var(--on-background);
+    padding-bottom: $spacing-2xl;
+  }
+  &__button {
+    @include neumorphism;
+    border: transparent;
+    color: var(--primary-color);
+    font-weight: $font-heavy;
+    letter-spacing: px-to-rem(1.7);
+    padding: $spacing-md $spacing-lg;
+    animation: bounce 2s infinite ease-in-out;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

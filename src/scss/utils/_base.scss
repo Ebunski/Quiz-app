@@ -2,6 +2,7 @@
 @use "./colors" as *;
 @use "./mixins" as *;
 @use "./functions" as *;
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -71,9 +72,6 @@ a {
   color: var(--secondary-color);
   text-decoration: none;
   transition: $transition;
-  // &:hover {
-  //   color: $secondary-color;
-  // }
 }
 
 p {
@@ -83,6 +81,7 @@ p {
 ul {
   list-style-type: none;
 }
+
 main {
   height: 100%;
   width: 100%;
@@ -105,9 +104,10 @@ button {
   background: transparent;
   color: var(--on-background);
   text-transform: capitalize;
-  border: 3px solid var(--primary-color);
+  border: 1px solid var(--primary-color);
   border-radius: $radius-sm;
   cursor: pointer;
   transition: $transition;
   z-index: 1;
+  letter-spacing: px-to-rem(1.5);
 }

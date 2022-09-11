@@ -27,7 +27,7 @@ export default function QuizPage() {
 
   return (
     <div>
-      {oneToTwenty[index]}
+      {oneToTwenty?.length > 0 && oneToTwenty[index]}
       {remainingTime}
     </div>
   );

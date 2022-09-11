@@ -78,6 +78,15 @@
   bottom: $val;
   right: $val;
 }
+@mixin neumorphism {
+  border-radius: 15px;
+  background-color: var(--background-color);
+  box-shadow: 13px 13px 22px #b6c2ca, -13px -13px 22px #ffffff;
+
+  &:hover {
+    box-shadow: inset 13px 13px 22px #b6c2ca, inset -13px -13px 22px #ffffff;
+  }
+}
 
 $breakpoints-up: (
   "medium": px-to-em(700),

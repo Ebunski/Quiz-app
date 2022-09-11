@@ -1,9 +1,8 @@
 import React from "react";
 import Loading from "./components/Loading";
 import Error from "./components/Error";
-import WelcomePage from "./pages/WelcomePage";
+import WelcomePage from "./pages/WelcomePage/WelcomePage";
 import QuizPage from "./pages/QuizPage";
-import SelectionPage from "./pages/SelectionPage";
 import CongratsPage from "./pages/CongratsPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useQuizContext } from "./contexts/quizContext";
@@ -20,19 +19,11 @@ export default function App() {
           path="/"
           element={
             <ErrorBoundary>
-              <WelcomePage />{" "}
+              <WelcomePage />
             </ErrorBoundary>
           }
         />
-        <Route
-          path="selection"
-          element={
-            <ErrorBoundary>
-              {" "}
-              <SelectionPage />
-            </ErrorBoundary>
-          }
-        />
+
         <Route
           path="quiz"
           element={

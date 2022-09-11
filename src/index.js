@@ -1,7 +1,7 @@
 import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
-import "./style.css";
+import "./scss/style.scss";
 import { QuizProvider } from "./contexts/quizContext";
 
 const container = document.getElementById("root");
