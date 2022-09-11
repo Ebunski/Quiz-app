@@ -1,11 +1,11 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export default function useLocalStorage(key = "", initialValue = "") {
   const [data, setData] = useState(() => getData());
 
   function getData() {
     const savedValue = localStorage.getItem(key);
-    if (savedValue) return JSON.parse(savedValue);
+    if (savedValue !== undefined) return JSON.parse(savedValue);
     if (initialValue instanceof Function) return initialValue();
     return initialValue;
   }

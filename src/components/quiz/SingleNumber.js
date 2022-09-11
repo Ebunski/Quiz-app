@@ -1,17 +1,20 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React from "react";
+// import PropTypes from "prop-types";
 import Question from "./Question";
 import Option from "./Option";
+import { useQuizContext } from "../../contexts/quizContext";
 
 export default function SingleNumber({
-  category,
-  difficulty,
   question,
+  difficulty,
   correct_answer,
   incorrect_answers,
   number,
-  ...form
+  total,
 }) {
+  const { handleCheck, handleClick, isAnswered, selectedOption } =
+    useQuizContext();
+
   function escapeHtml(str) {
     return str
       .replace(/&amp;/g, "&")
@@ -20,30 +23,26 @@ export default function SingleNumber({
       .replace(/&lt;/g, "<")
       .replace(/&gt;/g, ">");
   }
-
   const answers = incorrect_answers.concat(correct_answer);
   const randomAnswers = answers.sort();
-
   const optionsList = randomAnswers.map((x, index) => (
     <React.Fragment key={index}>
-      <Option
-        value={escapeHtml(x)}
-        name={form.name}
-        currentChoice={form.currentChoice}
-        correctAnswer={correct_answer}
-      />
+      <Option value={escapeHtml(x)} correctAnswer={correct_answer} />
       <br />
     </React.Fragment>
   ));
-
   const decodedQuestion = escapeHtml(question);
 
   return (
     <div style={{ marginBlock: "30px" }}>
-      <p>Question {number} of 10 </p>
+      <p>
+        Question {number} of {total}{" "}
+      </p>
       <Question question={decodedQuestion} />
       {optionsList}
-      <button>Check</button>
+      <button disabled={!selectedOption} onClick={handleCheck}>
+        {isAnswered ? "Continue" : "Check"}
+      </button>
     </div>
   );
 }

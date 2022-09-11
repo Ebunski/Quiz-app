@@ -1,38 +1,34 @@
-import React, { useState } from "react";
-import SingleNumber from "../components/SingleNumber";
-import Error from "../components/Error";
+import React, { useEffect } from "react";
+import SingleNumber from "../components/quiz/SingleNumber";
 import { useQuizContext } from "../contexts/quizContext";
-import useTab from "../hooks/useTab";
+import { useNavigate } from "react-router-dom";
+import useCountdown from "../hooks/useCountdown";
 
 export default function QuizPage() {
-  const {
-    response = [],
-    handleSubmit,
-    formData,
-    handleRestart,
-  } = useQuizContext();
-  const { handlePrev, handleNext, index } = useTab(response);
+  const { score, isAnswered, response, index, gameOver } = useQuizContext();
+  const navigate = useNavigate();
+  const { remainingTime } = useCountdown(
+    20,
+    () => console.log(remainingTime),
+    score,
+    isAnswered
+  );
 
-  const oneToTwenty = response.map((x, pos) => (
-    <SingleNumber
-      name={`q${pos + 1}`}
-      currentChoice={formData[`q${pos + 1}`]}
-      key={pos}
-      number={index + 1}
-      {...x}
-    />
+  useEffect(() => {
+    if (gameOver) navigate("/congrats", { replace: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [gameOver]);
+
+  // const { secondsLeft } = useTimer(10, isAnswered, index);
+
+  const oneToTwenty = response?.map((x, pos) => (
+    <SingleNumber key={pos} number={index + 1} total={response.length} {...x} />
   ));
+
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        {oneToTwenty[index]}
-        <button type="submit">Submit</button>
-      </form>
-      <div>
-        <button onClick={handleRestart}>Restart</button>
-        <button onClick={handlePrev}>previous</button>
-        <button onClick={handleNext}>next</button>
-      </div>
-    </>
+    <div>
+      {oneToTwenty[index]}
+      {remainingTime}
+    </div>
   );
 }

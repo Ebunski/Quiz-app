@@ -8,7 +8,11 @@ export default function SelectionPage() {
     difficulty: "",
   });
   const navigate = useNavigate();
-  const { categories, difficulty, handleSelection } = useQuizContext();
+  const { categories, difficulty, handleSelection, remainingTime } =
+    useQuizContext();
+
+  /*========================states================================*/
+
   const categoryList = categories.map((x) => (
     <option key={x.id} value={x.id}>
       {x.name}
@@ -28,11 +32,13 @@ export default function SelectionPage() {
     }));
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     handleSelection(selection);
     setSelection({ category: "", difficulty: "" });
-    navigate("/quiz");
+    setTimeout(() => {
+      navigate("/quiz");
+    }, 1000);
   }
 
   return (
@@ -62,6 +68,7 @@ export default function SelectionPage() {
       </label>
 
       <button>Submit</button>
+      {remainingTime}
     </form>
   );
 }

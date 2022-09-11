@@ -1,7 +1,8 @@
 import { useState } from "react";
 
-export default function useTab(arr) {
+export default function useTab(arr, endFn) {
   const [index, setIndex] = useState(0);
+
   function check(number) {
     //for when it reaches end of array
     if (number > arr.length - 1) return 0;
@@ -14,8 +15,9 @@ export default function useTab(arr) {
   }
 
   function handleNext() {
+    if (endFn && index + 1 > arr.length - 1) return endFn();
     setIndex((prev) => check(prev + 1));
   }
 
-  return { handlePrev, handleNext, index };
+  return { handlePrev, handleNext, index, setIndex };
 }

@@ -1,91 +1,82 @@
-import React, { useEffect, useState, useContext, createContext } from "react";
+import React, { useState, useContext, createContext } from "react";
 import { categories, difficulty } from "../data";
+import useTab from "../hooks/useTab";
 import useFetch from "../hooks/useFetch";
-import useLocalStorage from "../hooks/useLocalStorage";
+import useCountdown from "../hooks/useCountdown";
 
 const QuizContext = createContext();
 
 export const QuizProvider = ({ children }) => {
-  const { result, loading, error, setUrl } = useFetch();
-  const [data, setData] = useLocalStorage("questions-bank", result);
-  const [showAnswer, setShowAnswer] = useState(false);
-  const initialForm = {
-    q1: "",
-    q2: "",
-    q3: "",
-    q4: "",
-    q5: "",
-    q6: "",
-    q7: "",
-    q8: "",
-    q9: "",
-    q10: "",
-  };
-  const [formData, setFormData] = useState(initialForm);
+  const [gameOver, setGameOver] = useState(false);
+  const [score, setScore] = useState(0);
+  const [selectedOption, setSelectedOption] = useState("");
+  const [isAnswered, setIsAnswered] = useState(false);
+  const { remainingTime } = useCountdown(
+    20,
+    () => console.log(remainingTime),
+    score,
+    isAnswered
+  );
+  const { result, loading, error, setShouldFetch, setUrl } = useFetch();
+  const response = result?.results;
+  const { handleNext, index, setIndex } = useTab(response, () =>
+    setGameOver(true)
+  );
 
-  useEffect(() => {
-    if (result !== {}) {
-      console.log("syncing with local storage...");
-      setData(result);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [result]);
   /*========================states================================*/
-  const response = data.results; ///error
-  const code = data.response_code;
-  const correctAnswers = response && response.map((x) => x.correct_answer);
 
   function handleSelection({ category, difficulty }) {
     const url = `https://opentdb.com/api.php?amount=10${
       category && `&category=${category}`
     }${difficulty && `&difficulty=${difficulty}`}&type=multiple`;
     setUrl(url);
+    setShouldFetch(true);
+    setScore(0);
+    setSelectedOption("");
+    setIsAnswered(false);
+    setGameOver(false);
+    setIndex(0);
+  }
+  function handleClick(option) {
+    setSelectedOption(option);
   }
 
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  }
+  function handleCheck() {
+    if (!selectedOption) return;
 
-  function evaluateAnswers() {
-    const mark = correctAnswers.map(
-      (x, index) => x === formData[`q${index + 1}`]
-    );
-    const score = mark.filter((x) => x === true).length;
-    console.log(score, mark);
-    setShowAnswer(true);
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log(formData);
-    console.log(correctAnswers);
-    evaluateAnswers();
-  }
-  function handleRestart() {
-    window.location.pathname = "/selection";
-    setShowAnswer(false);
-    setFormData(initialForm);
-    setData([]);
+    if (isAnswered) {
+      handleNext();
+      setIsAnswered(false);
+      setSelectedOption("");
+    }
+    if (!isAnswered) {
+      if (selectedOption === response[index].correct_answer) {
+        setScore((prev) => prev + 1);
+        console.log("correct", selectedOption);
+      } else {
+        console.log("wrong", selectedOption);
+      }
+      setIsAnswered(true);
+    }
   }
 
   return (
     <QuizContext.Provider
       value={{
-        categories,
-        difficulty,
-        response,
         loading,
         error,
-        formData,
-        showAnswer,
+        response,
+        categories,
+        difficulty,
+        score,
+        gameOver,
+        selectedOption,
+        isAnswered,
+        index,
+        remainingTime,
         handleSelection,
-        handleChange,
-        handleSubmit,
-        handleRestart,
+        handleClick,
+        handleCheck,
       }}
     >
       {children}
