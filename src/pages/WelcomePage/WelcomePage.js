@@ -16,7 +16,7 @@ export default function WelcomePage() {
           smooth={true}
           duration={2000}
           spy={true}
-          exact={true}
+          exact="true"
         >
           <button className="welcome__button"> Play </button>
         </LinkScroll>

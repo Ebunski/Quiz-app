@@ -24,56 +24,75 @@ export default function SelectionPage() {
   }, [shouldNavigate, navigate]);
   useEffect(() => {
     setShouldNavigate(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [setShouldNavigate]);
 
   /*========================states================================*/
   const categoryList = categories.map((x) => (
-    <option key={x.id} value={x.id}>
+    <option className="selection__option" key={x.id} value={x.id}>
       {x.name}
     </option>
   ));
   const difficultyList = difficulty.map((x, index) => (
-    <option key={index} value={x}>
+    <option className="selection__option" key={index} value={x}>
       {x}
     </option>
   ));
 
   return (
     <section id="selection" className="selection">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="selection__form">
         <input
-          name="category"
+          className="selection__input"
+          name="user"
           type="text"
-          placeholder="Enter your name"
+          placeholder="Enter nickname"
           value={formData.user}
           onChange={handleChange}
         />
-        <label>
-          category:
+        <fieldset className="selection__group">
+          <label className="selection__label" htmlFor="category">
+            category:
+          </label>
+
           <select
+            id="category"
+            className="selection__select"
             name="category"
             value={formData.category}
             onChange={handleChange}
           >
-            <option value="">--random--</option>
+            <option className="selection__option" value="">
+              --random--
+            </option>
             {categoryList}
           </select>
-        </label>
+        </fieldset>
 
-        <label>
-          difficulty
+        <fieldset className="selection__group">
+          <label className="selection__label" htmlFor="difficulty">
+            difficulty:
+          </label>
           <select
+            id="difficulty"
+            className="selection__select"
             name="difficulty"
             value={formData.difficulty}
             onChange={handleChange}
           >
-            <option value="">--random--</option>
+            <option className="selection__option" value="">
+              --random--
+            </option>
             {difficultyList}
           </select>
-        </label>
+        </fieldset>
 
-        <button>Submit</button>
+        <button
+          className="selection__button"
+          disabled={!formData.user}
+          style={{ color: !formData.user ? "gray" : "" }}
+        >
+          Let's Go
+        </button>
       </form>
     </section>
   );

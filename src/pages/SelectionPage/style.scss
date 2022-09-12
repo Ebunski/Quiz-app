@@ -2,4 +2,63 @@
 
 .selection {
   min-height: 100vh;
+  background: var(--secondary-color);
+  @include flex(row, center);
+  &__form {
+    @include flex(row, center);
+    width: min(300px, 400px);
+
+    padding: $spacing-3xl $spacing-md;
+    gap: $spacing-lg;
+    background: var(--secondary-color);
+    @include claymorphism;
+    color: var(--on-surface);
+    border-radius: 30px;
+  }
+  &__input,
+  &__group,
+  &__select,
+  &__button {
+    width: 100%;
+  }
+  &__input,
+  &__select,
+  &__button {
+    border-radius: $rounded-md;
+    padding-block: $spacing-sm;
+    @include claymorphism2;
+  }
+  &__input {
+    outline: none;
+    border: none;
+    text-transform: capitalize;
+    &::placeholder {
+      padding-left: $spacing-sm;
+      color: var(--sub-text-color);
+    }
+  }
+  &__group {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    gap: $spacing-sm;
+    border: transparent;
+  }
+  &__label {
+    font-size: $font-sm;
+    border-left: 4px solid #fff;
+    padding-left: 4px;
+    text-transform: uppercase;
+  }
+  &__select {
+    color: var(--sub-text-color);
+  }
+  &__button {
+    border: transparent;
+    color: var(--on-surface);
+    &:hover {
+      @include depression($secondary-color);
+      // @include claymorphism3;
+    }
+  }
 }

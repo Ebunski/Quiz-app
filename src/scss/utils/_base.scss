@@ -14,7 +14,7 @@ html {
 }
 
 body {
-  background-color: var(--background-color);
+  background: var(--background-color);
   color: var(--on-background);
   height: 100vh;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -105,7 +105,7 @@ button {
   color: var(--on-background);
   text-transform: capitalize;
   border: 1px solid var(--primary-color);
-  border-radius: $radius-sm;
+  border-radius: $rounded-sm;
   cursor: pointer;
   transition: $transition;
   z-index: 1;

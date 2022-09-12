@@ -3,6 +3,7 @@
 .welcome {
   @include flex(column, center);
   min-height: 100vh;
+  text-align: center;
   &__title {
     font-weight: $font-heavy;
     padding-bottom: $spacing-2xl;
@@ -20,6 +21,11 @@
     letter-spacing: px-to-rem(1.7);
     padding: $spacing-md $spacing-lg;
     animation: bounce 2s infinite ease-in-out;
+    border-radius: 15px;
+
+    &:hover {
+      color: var(--secondary-color);
+    }
   }
 }
 

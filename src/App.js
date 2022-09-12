@@ -1,6 +1,6 @@
 import React from "react";
 import Loading from "./components/Loading";
-import Error from "./components/Error";
+
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
 import QuizPage from "./pages/QuizPage";
 import CongratsPage from "./pages/CongratsPage";
@@ -11,7 +11,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 export default function App() {
   const { loading, error } = useQuizContext();
   if (loading) return <Loading />;
-  if (error) return <Error />;
+
   return (
     <BrowserRouter>
       <Routes>

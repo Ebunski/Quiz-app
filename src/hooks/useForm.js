@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function useForm(receiver, names = []) {
   const [shouldNavigate, setShouldNavigate] = useState(false);
@@ -6,6 +6,7 @@ export default function useForm(receiver, names = []) {
   names.map((x, index) => (pairs[x] = ""));
   const [formData, setFormData] = useState(pairs);
 
+  /*--------------------------states-------------------*/
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
     setFormData((prev) => ({

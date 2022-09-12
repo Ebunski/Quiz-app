@@ -2,21 +2,16 @@ import React, { useState, useContext, createContext } from "react";
 import { categories, difficulty } from "../data";
 import useTab from "../hooks/useTab";
 import useFetch from "../hooks/useFetch";
-import useCountdown from "../hooks/useCountdown";
 
 const QuizContext = createContext();
 
 export const QuizProvider = ({ children }) => {
   const [gameOver, setGameOver] = useState(false);
+  const [user, setUser] = useState("");
   const [score, setScore] = useState(0);
   const [selectedOption, setSelectedOption] = useState("");
   const [isAnswered, setIsAnswered] = useState(false);
-  const { remainingTime } = useCountdown(
-    20,
-    () => console.log(remainingTime),
-    score,
-    isAnswered
-  );
+
   const { result, loading, error, setShouldFetch, setUrl } = useFetch();
   const response = result?.results;
   const { handleNext, index, setIndex } = useTab(response, () =>
@@ -25,11 +20,12 @@ export const QuizProvider = ({ children }) => {
 
   /*========================states================================*/
 
-  function handleSelection({ category, difficulty }) {
+  function handleSelection({ user, category, difficulty }) {
     const url = `https://opentdb.com/api.php?amount=10${
       category && `&category=${category}`
     }${difficulty && `&difficulty=${difficulty}`}&type=multiple`;
     setUrl(url);
+    setUser(user);
     setShouldFetch(true);
     setScore(0);
     setSelectedOption("");
@@ -73,7 +69,7 @@ export const QuizProvider = ({ children }) => {
         selectedOption,
         isAnswered,
         index,
-        remainingTime,
+        user,
         handleSelection,
         handleClick,
         handleCheck,
