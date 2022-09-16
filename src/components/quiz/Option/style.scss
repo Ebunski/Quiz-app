@@ -1,0 +1,14 @@
+@use "../../../scss/style.scss" as *;
+
+.option {
+  width: 100%;
+  background-color: rgba(127, 95, 63, 0.3);
+  color: var(--on-primary);
+  border: transparent;
+  border-radius: $rounded-md;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    transform: scale(1.02);
+  }
+}

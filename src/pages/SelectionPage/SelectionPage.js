@@ -6,8 +6,7 @@ import useForm from "../../hooks/useForm";
 
 export default function SelectionPage() {
   const navigate = useNavigate();
-  const { categories, difficulty, handleSelection, remainingTime } =
-    useQuizContext();
+  const { categories, difficulty, handleSelection } = useQuizContext();
   const {
     shouldNavigate,
     handleSubmit,

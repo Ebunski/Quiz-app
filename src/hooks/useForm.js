@@ -5,6 +5,7 @@ export default function useForm(receiver, names = []) {
   const pairs = {};
   names.map((x, index) => (pairs[x] = ""));
   const [formData, setFormData] = useState(pairs);
+  
 
   /*--------------------------states-------------------*/
   function handleChange(event) {

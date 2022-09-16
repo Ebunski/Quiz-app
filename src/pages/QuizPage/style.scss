@@ -1,0 +1,33 @@
+@use "../../scss/style.scss" as *;
+
+.quiz {
+  &__container {
+    @include flex(column, center);
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+  }
+  &__bg {
+    width: 100%;
+    &::before,
+    &::after {
+      @include pseudo;
+      width: 300px;
+      height: 300px;
+      border-radius: $rounded-full;
+      z-index: -1;
+    }
+    &::before {
+      background: linear-gradient(var(--primary-color), #e91e63);
+      top: 30%;
+      left: 10%;
+      transform: translate(-40%, -40%);
+    }
+    &::after {
+      background: linear-gradient(var(--primary-color), #000);
+      bottom: 30%;
+      right: 10%;
+      transform: translate(40%, 50%);
+    }
+  }
+}

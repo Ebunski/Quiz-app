@@ -2,14 +2,14 @@ import React from "react";
 import Loading from "./components/Loading";
 
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
-import QuizPage from "./pages/QuizPage";
+import QuizPage from "./pages/QuizPage/QuizPage";
 import CongratsPage from "./pages/CongratsPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useQuizContext } from "./contexts/quizContext";
 import ErrorBoundary from "./components/ErrorBoundary";
 
 export default function App() {
-  const { loading, error } = useQuizContext();
+  const { loading } = useQuizContext();
   if (loading) return <Loading />;
 
   return (

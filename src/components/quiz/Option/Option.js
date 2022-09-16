@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { useQuizContext } from "../../contexts/quizContext";
+import "./style.scss";
+import { useQuizContext } from "../../../contexts/quizContext";
 
 export default function Option({ value, correctAnswer }) {
   const { isAnswered, handleClick } = useQuizContext();
@@ -10,7 +11,11 @@ export default function Option({ value, correctAnswer }) {
   //     (currentChoice === value && value !== correctAnswer && "red"),
   // };
   return (
-    <button disabled={isAnswered} onClick={() => handleClick(value)}>
+    <button
+      className="option"
+      disabled={isAnswered}
+      onClick={() => handleClick(value)}
+    >
       {value}{" "}
     </button>
   );

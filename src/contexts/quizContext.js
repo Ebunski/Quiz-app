@@ -2,6 +2,7 @@ import React, { useState, useContext, createContext } from "react";
 import { categories, difficulty } from "../data";
 import useTab from "../hooks/useTab";
 import useFetch from "../hooks/useFetch";
+import useCountdown from "../hooks/useCountdown";
 
 const QuizContext = createContext();
 
@@ -11,7 +12,7 @@ export const QuizProvider = ({ children }) => {
   const [score, setScore] = useState(0);
   const [selectedOption, setSelectedOption] = useState("");
   const [isAnswered, setIsAnswered] = useState(false);
-
+  const { remainingTime } = useCountdown(20, () => setGameOver(true));
   const { result, loading, error, setShouldFetch, setUrl } = useFetch();
   const response = result?.results;
   const { handleNext, index, setIndex } = useTab(response, () =>
@@ -70,9 +71,11 @@ export const QuizProvider = ({ children }) => {
         isAnswered,
         index,
         user,
+        remainingTime,
         handleSelection,
         handleClick,
         handleCheck,
+        setGameOver,
       }}
     >
       {children}
