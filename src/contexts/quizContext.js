@@ -11,6 +11,7 @@ export const QuizProvider = ({ children }) => {
   const [gameOver, setGameOver] = useState(false);
   const [user, setUser] = useState("");
   const [score, setScore] = useLocalStorage("score", 0);
+  const [highScores, setHighScores] = useLocalStorage("high-scores", []);
   const [selectedOption, setSelectedOption] = useState("");
   const [isAnswered, setIsAnswered] = useState(false);
 
@@ -26,7 +27,7 @@ export const QuizProvider = ({ children }) => {
     () => setGameOver(true),
     index
   );
-  
+
   /*========================states================================*/
 
   function handleSelection({ user, category, difficulty }) {

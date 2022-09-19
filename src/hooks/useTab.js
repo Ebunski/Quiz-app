@@ -1,7 +1,8 @@
-import { useState } from "react";
+
+import useLocalStorage from "./useLocalStorage";
 
 export default function useTab(arr, endFn) {
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useLocalStorage(0);
 
   function check(number) {
     //for when it reaches end of array

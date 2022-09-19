@@ -74,8 +74,8 @@
 }
 @mixin corner($top-or-bottom, $y, $right-or-left, $x) {
   position: absolute;
-  #{$top-or-bottom}: px-to-rem($y);
-  #{$right-or-left}: px-to-rem($x);
+  #{$top-or-bottom}: ($y);
+  #{$right-or-left}: ($x);
 }
 @mixin absolute-position-all($val) {
   position: absolute;

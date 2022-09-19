@@ -19,16 +19,33 @@
       z-index: -1;
     }
     &::before {
-      background: linear-gradient(var(--primary-color), #e91e63);
-      top: 50%;
-      left: 50%;
+      background: $gradient;
+      @include corner(top, 50%, left, 50%);
       transform: translate(-130%, -80%);
     }
     &::after {
-      background: linear-gradient(var(--primary-color), #e91e63);
+      background: $gradient;
       bottom: 50%;
       right: 50%;
       transform: translate(130%, 80%);
+    }
+  }
+  &__timer {
+    margin: $spacing-md;
+    width: 70px;
+    height: 70px;
+    position: relative;
+    @include flex(row, center);
+    border: none;
+    // @include glass;
+    background: $gradient;
+    border-radius: $rounded-full;
+    z-index: 1;
+
+    &-count {
+      font-size: 2rem;
+      font-weight: $font-heavy;
+      color: $on-primary;
     }
   }
 }

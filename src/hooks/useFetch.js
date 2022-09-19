@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import useLocalStorage from "../hooks/useLocalStorage";
+import useLocalStorage from "./useLocalStorage";
 import axios from "axios";
 
 export default function useFetch() {
