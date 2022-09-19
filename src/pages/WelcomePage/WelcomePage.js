@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.scss";
+import "./welcome-page.scss";
 import SelectionPage from "../SelectionPage/SelectionPage";
 import { Link as LinkScroll } from "react-scroll";
 

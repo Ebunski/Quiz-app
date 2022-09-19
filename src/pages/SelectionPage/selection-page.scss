@@ -10,8 +10,8 @@
 
     padding: $spacing-3xl $spacing-md;
     gap: $spacing-lg;
-    background: var(--secondary-color);
-    @include claymorphism;
+    background: $secondary-color;
+    @include clay2;
     color: var(--on-surface);
     border-radius: 30px;
   }
@@ -26,12 +26,13 @@
   &__button {
     border-radius: $rounded-md;
     padding-block: $spacing-sm;
-    @include claymorphism2;
+    @include clay2;
   }
   &__input {
     outline: none;
     border: none;
     text-transform: capitalize;
+    text-indent: $spacing-sm;
     &::placeholder {
       padding-left: $spacing-sm;
       color: var(--sub-text-color);
@@ -52,13 +53,15 @@
   }
   &__select {
     color: var(--sub-text-color);
+    outline: none;
+    border: none;
   }
   &__button {
     border: transparent;
     color: var(--on-surface);
     &:hover {
-      @include depression($secondary-color);
-      // @include claymorphism3;
+      @include depression2($secondary-color);
+      // @include clay3($secondary-color);
     }
   }
 }

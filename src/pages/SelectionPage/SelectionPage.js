@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./style.scss";
+import "./selection-page.scss";
 import { useQuizContext } from "../../contexts/quizContext";
 import { useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
@@ -45,7 +45,7 @@ export default function SelectionPage() {
           name="user"
           type="text"
           placeholder="Enter nickname"
-          value={formData.user}
+          value={formData.user || ""}
           onChange={handleChange}
         />
         <fieldset className="selection__group">
@@ -57,7 +57,7 @@ export default function SelectionPage() {
             id="category"
             className="selection__select"
             name="category"
-            value={formData.category}
+            value={formData.category || ""}
             onChange={handleChange}
           >
             <option className="selection__option" value="">
@@ -75,7 +75,7 @@ export default function SelectionPage() {
             id="difficulty"
             className="selection__select"
             name="difficulty"
-            value={formData.difficulty}
+            value={formData.difficulty || ""}
             onChange={handleChange}
           >
             <option className="selection__option" value="">

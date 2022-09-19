@@ -1,0 +1,31 @@
+@use "../../scss/style.scss" as *;
+
+.congrats {
+  &__container {
+    min-height: 100vh;
+    @include flex(row, center);
+  }
+  &__card {
+    min-width: 300px;
+    background: $primary-color;
+    padding: $spacing-xl;
+    border-radius: $rounded-md;
+    color: $on-primary;
+    @include flex(column);
+
+    gap: $spacing-xl;
+  }
+  &__text {
+    color: $on-background;
+  }
+  &__button {
+    color: $on-primary;
+    @include clay2;
+    border: transparent;
+    padding-inline: $spacing-lg;
+
+    &:hover {
+      @include pressed;
+    }
+  }
+}

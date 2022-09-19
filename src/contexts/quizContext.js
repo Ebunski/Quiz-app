@@ -3,22 +3,30 @@ import { categories, difficulty } from "../data";
 import useTab from "../hooks/useTab";
 import useFetch from "../hooks/useFetch";
 import useCountdown from "../hooks/useCountdown";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const QuizContext = createContext();
 
 export const QuizProvider = ({ children }) => {
   const [gameOver, setGameOver] = useState(false);
   const [user, setUser] = useState("");
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useLocalStorage("score", 0);
   const [selectedOption, setSelectedOption] = useState("");
   const [isAnswered, setIsAnswered] = useState(false);
-  const { remainingTime } = useCountdown(20, () => setGameOver(true));
+
   const { result, loading, error, setShouldFetch, setUrl } = useFetch();
   const response = result?.results;
+
   const { handleNext, index, setIndex } = useTab(response, () =>
     setGameOver(true)
   );
-
+  const { remainingTime } = useCountdown(
+    20,
+    response?.length > 0,
+    () => setGameOver(true),
+    index
+  );
+  
   /*========================states================================*/
 
   function handleSelection({ user, category, difficulty }) {
@@ -49,9 +57,6 @@ export const QuizProvider = ({ children }) => {
     if (!isAnswered) {
       if (selectedOption === response[index].correct_answer) {
         setScore((prev) => prev + 1);
-        console.log("correct", selectedOption);
-      } else {
-        console.log("wrong", selectedOption);
       }
       setIsAnswered(true);
     }

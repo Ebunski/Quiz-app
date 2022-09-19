@@ -72,6 +72,11 @@
   bottom: px-to-rem($bottom);
   width: 100%;
 }
+@mixin corner($top-or-bottom, $y, $right-or-left, $x) {
+  position: absolute;
+  #{$top-or-bottom}: px-to-rem($y);
+  #{$right-or-left}: px-to-rem($x);
+}
 @mixin absolute-position-all($val) {
   position: absolute;
   top: $val;
@@ -86,42 +91,6 @@
   height: 100%;
 }
 
-//effects
-@mixin neumorphism {
-  background-color: var(--background-color);
-  box-shadow: 13px 13px 22px hsl(204, 16%, 75%), -13px -13px 22px #ffffff;
-}
-@mixin depression($color) {
-  box-shadow: inset 5px 5px 10px darken($color, 5%),
-    inset -5px -5px 10px lighten($color, 5%);
-}
-
-//claymorphism
-@mixin claymorphism {
-  box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.25),
-    10px 10px 70px rgba(0, 0, 0, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.5),
-    inset 5px 5px 10px rgba(255, 255, 255, 0.2),
-    inset -5px -5px 15px rgba(0, 0, 0, 0.75);
-}
-@mixin claymorphism2 {
-  box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.25),
-    inset 2px 2px 5px rgba(255, 255, 255, 0.25),
-    inset -3px -3px 5px rgba(0, 0, 0, 0.5);
-}
-@mixin claymorphism3 {
-  box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.25),
-    inset 2px 2px 5px rgba(0, 0, 0, 0.35),
-    inset -3px -3px 5px rgba(0, 0, 0, 0.5);
-}
-@mixin glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: $rounded-md;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-}
 $breakpoints-up: (
   "medium": px-to-em(700),
   "large": px-to-em(900),

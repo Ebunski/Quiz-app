@@ -1,23 +1,27 @@
 import React, { useEffect } from "react";
-import "./style.scss";
+import "./option.scss";
 import { useQuizContext } from "../../../contexts/quizContext";
 
 export default function Option({ value, correctAnswer }) {
-  const { isAnswered, handleClick } = useQuizContext();
+  const { isAnswered, handleClick, selectedOption } = useQuizContext();
 
-  // const style = {
-  //   color:
-  //     (value === correctAnswer && "green") ||
-  //     (currentChoice === value && value !== correctAnswer && "red"),
-  // };
+  const style = {
+    backgroundColor:
+      (value === correctAnswer && "hsl(120, 80%, 45%)") ||
+      (selectedOption === value &&
+        value !== correctAnswer &&
+        "hsl(0, 100%, 70%) "),
+  };
   return (
     <button
-      className="option"
+      style={isAnswered ? style : {}}
+      className={` ${selectedOption === value ? "selected" : ""} ${
+        isAnswered ? "disabled" : "enabled"
+      }`}
       disabled={isAnswered}
       onClick={() => handleClick(value)}
-    >
-      {value}{" "}
-    </button>
+      dangerouslySetInnerHTML={{ __html: value }}
+    ></button>
   );
 }
 // //value - data you want to store in state on selection

@@ -12,7 +12,11 @@ export default class ErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       // You can render any custom fallback UI
-      return <h1>Something went wrong.</h1>;
+      return (
+        <div className="center">
+          <h1>Something went wrong.</h1>
+        </div>
+      );
     }
 
     return this.props.children;

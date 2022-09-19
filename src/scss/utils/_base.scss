@@ -111,3 +111,8 @@ button {
   z-index: 1;
   letter-spacing: px-to-rem(1.5);
 }
+.center {
+  @include flex(row, center);
+  min-height: 100vh;
+  text-align: center;
+}

@@ -11,8 +11,10 @@ export default function Error({ type }) {
   }
   return (
     <main className="center">
-      {icon}
-      {text}
+      <div>
+        {icon}
+        {text}
+      </div>
     </main>
   );
 }

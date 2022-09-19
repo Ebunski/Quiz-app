@@ -1,7 +1,8 @@
 //colors
-$secondary-color: #7f5f3f !default;
+$secondary-color: #f54500 !default;
 $primary-color: #ff9800 !default;
 $background-color: hsl(66, 71%, 95%);
+$background2-color: #ffe0b2;
 $surface-color: #fff;
 
 $on-primary: #fff;
@@ -9,8 +10,6 @@ $on-secondary: #fff;
 $on-background: #000;
 $on-surface: #fff;
 $sub-text: hsl(0, 0%, 20%);
-$light-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-$dark-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
 
 :root {
   --secondary-color: #{$secondary-color};
@@ -22,8 +21,6 @@ $dark-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
   --on-background: #{$on-background};
   --on-surface: #{$on-surface};
   --sub-text-color: #{$sub-text};
-  --light-shadow: #{$light-shadow};
-  --dark-shadow: #{$dark-shadow};
 }
 ///dark themes
 

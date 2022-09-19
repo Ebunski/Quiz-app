@@ -1,0 +1,29 @@
+@use "../../../scss/style.scss" as *;
+
+.option-style {
+  width: 100%;
+  background-color: rgba(127, 95, 63, 0.2);
+  color: var(--on-background);
+  border: transparent;
+  border-radius: $rounded-md;
+  transition: 0.5s ease all;
+}
+.selected {
+  color: var(--on-primary);
+  transform: scale(1.1) translateX(10px) translateY(-5px);
+  background-color: rgba(0, 0, 0, 0.7);
+
+  @include box-shadow-sm;
+}
+
+.enabled {
+  @extend .option-style;
+  &:hover {
+    @extend .selected;
+    background-color: $secondary-color;
+  }
+}
+
+.disabled {
+  @extend .option-style;
+}

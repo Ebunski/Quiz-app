@@ -3,7 +3,7 @@ import Loading from "./components/Loading";
 
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
 import QuizPage from "./pages/QuizPage/QuizPage";
-import CongratsPage from "./pages/CongratsPage";
+import CongratsPage from "./pages/CongratsPage/CongratsPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useQuizContext } from "./contexts/quizContext";
 import ErrorBoundary from "./components/ErrorBoundary";

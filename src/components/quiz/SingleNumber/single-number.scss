@@ -1,0 +1,48 @@
+@use "../../../scss/style.scss" as *;
+
+.card {
+  @include flex(row, center);
+  @include glass;
+  z-index: 10;
+  text-align: center;
+  width: px-to-rem(320);
+  @include breakpoint-up(large) {
+    width: px-to-rem(450);
+  }
+  &__wrapper {
+    padding: $spacing-md $spacing-xl;
+  }
+  &__indicator {
+  }
+  &__questionBox {
+    padding-block: $spacing-lg;
+    line-height: 1.5;
+  }
+  &__question {
+    font-weight: $font-heavy;
+    color: var(--on-background);
+  }
+  &__answerBox {
+    @include flex(column);
+    align-items: flex-start;
+    padding-bottom: $spacing-md;
+    overflow: visible;
+  }
+  &__button {
+    color: #000;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    border: 2px solid transparent;
+    border-radius: $rounded-md;
+    @include box-shadow-sm;
+
+    padding-inline: $spacing-xl;
+    background: linear-gradient(225deg, var(--primary-color), #e91e63);
+
+    &:hover {
+      box-shadow: none;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      color: #fff;
+    }
+  }
+}
