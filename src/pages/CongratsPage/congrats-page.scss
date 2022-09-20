@@ -10,7 +10,7 @@
   }
   &__card {
     min-width: 300px;
-    background: $primary-color;
+    background: $secondary-color;
     padding: $spacing-xl;
     border-radius: $rounded-md;
     color: $on-primary;
@@ -19,7 +19,7 @@
     gap: $spacing-xl;
   }
   &__text {
-    color: $on-background;
+    color: $on-primary;
   }
   &__button {
     color: $on-primary;

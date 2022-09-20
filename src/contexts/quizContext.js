@@ -14,13 +14,13 @@ export const QuizProvider = ({ children }) => {
   const [selectedOption, setSelectedOption] = useState("");
   const [isAnswered, setIsAnswered] = useLocalStorage("is-answered", false);
 
-  const { result, loading, error, setShouldFetch, setUrl } = useFetch();
-  const response = result?.results;
+  const { response, setResponse, loading, error, setShouldFetch, setUrl } =
+    useFetch();
 
   const { handleNext, index, setIndex } = useTab(response, () =>
     setGameOver(true)
   );
-
+  console.log(response);
   /*========================states================================*/
 
   const reset = useCallback(() => {
@@ -31,22 +31,10 @@ export const QuizProvider = ({ children }) => {
     setGameOver(false);
     setIndex(0);
     setCurrUser({});
+    setResponse([]);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  function handleSelection({ user, category, difficulty }) {
-    const url = `https://opentdb.com/api.php?amount=10${
-      category && `&category=${category}`
-    }${difficulty && `&difficulty=${difficulty}`}&type=multiple`;
-    setCurrUser({
-      name: user,
-      category: category || "random",
-      difficulty: difficulty || "random",
-    });
-    setUrl(url);
-    setShouldFetch(true);
-    window.location.pathname = "/quiz";
-  }
 
   function handleClick(option) {
     setSelectedOption(option);
@@ -92,11 +80,13 @@ export const QuizProvider = ({ children }) => {
         currUser,
         highScores,
         reset,
-        handleSelection,
         handleClick,
         handleCheck,
         setGameOver,
         compileResult,
+        setCurrUser,
+        setUrl,
+        setShouldFetch,
       }}
     >
       {children}

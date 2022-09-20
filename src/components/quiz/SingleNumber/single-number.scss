@@ -47,6 +47,7 @@
     }
     &--disabled {
       @extend .card__button;
+      background: $disabled;
     }
   }
 }

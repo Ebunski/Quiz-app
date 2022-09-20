@@ -10,7 +10,7 @@ export default function QuizPage() {
   const { response, index, gameOver, error, compileResult, setGameOver } =
     useQuizContext();
   const { remainingTime } = useCountdown(
-    20,
+    30,
     response?.length > 0,
     () => setGameOver(true),
     index
@@ -27,7 +27,12 @@ export default function QuizPage() {
   /*-------states-------------------------------*/
 
   const oneToTwenty = response?.map((x, pos) => (
-    <SingleNumber key={pos} number={index + 1} total={response.length} {...x} />
+    <SingleNumber
+      key={pos}
+      number={index + 1}
+      total={response?.length}
+      {...x}
+    />
   ));
 
   if (error)

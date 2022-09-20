@@ -5,7 +5,7 @@ import axios from "axios";
 export default function useFetch() {
   const [shouldFetch, setShouldFetch] = useState(false);
   const [url, setUrl] = useState("");
-  const [result, setResult] = useLocalStorage("questions-bank", []);
+  const [response, setResponse] = useLocalStorage("questions-bank", []);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -14,12 +14,12 @@ export default function useFetch() {
   async function getData() {
     try {
       setLoading(true);
-      const { data } = await axios.get(url);
-      setResult(data);
+      const response = await axios.get(url);
+      setResponse(response.data.results);
       setError(null);
     } catch (error) {
       setError(error.response);
-      setResult([]);
+      setResponse([]);
       console.log(error);
     } finally {
       setLoading(false);
@@ -37,5 +37,5 @@ export default function useFetch() {
     // eslint-disable-next-line
   }, [url, shouldFetch]);
 
-  return { result, setResult, loading, error, setUrl, setShouldFetch };
+  return { response, setResponse, loading, error, setUrl, setShouldFetch };
 }

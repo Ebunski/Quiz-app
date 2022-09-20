@@ -101,10 +101,10 @@ section {
 button {
   position: relative;
   padding: $spacing-sm;
-  background: transparent;
+  background: $secondary-color;
   color: var(--on-background);
   text-transform: capitalize;
-  border: 1px solid var(--primary-color);
+  border: transparent;
   border-radius: $rounded-sm;
   cursor: pointer;
   transition: $transition;

@@ -1,18 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./selection-page.scss";
 import { useQuizContext } from "../../contexts/quizContext";
 import { useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 
 export default function SelectionPage() {
-  const navigate = useNavigate();
-  const { currUser, categories, difficulty, handleSelection } =
+  const { categories, difficulty, setCurrUser, setUrl, setShouldFetch } =
     useQuizContext();
   const { handleSubmit, handleChange, formData } = useForm(handleSelection, [
     "user",
     "category",
     "difficulty",
   ]);
+  const navigate = useNavigate();
 
   /*========================states================================*/
   const categoryList = categories.map((x) => (
@@ -25,6 +25,22 @@ export default function SelectionPage() {
       {x}
     </option>
   ));
+
+  function handleSelection({ user, category, difficulty }) {
+    const url = `https://opentdb.com/api.php?amount=10${
+      category && `&category=${category}`
+    }${difficulty && `&difficulty=${difficulty}`}&type=multiple`;
+    setCurrUser({
+      name: user,
+      category: category || "random",
+      difficulty: difficulty || "random",
+    });
+    setUrl(url);
+    setShouldFetch(true);
+   setTimeout(()=> {
+    navigate("/quiz");
+   },500) 
+  }
 
   return (
     <section id="selection" className="selection">

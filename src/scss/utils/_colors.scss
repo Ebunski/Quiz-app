@@ -12,7 +12,7 @@ $on-background: #000;
 $on-surface: #fff;
 $sub-text: hsl(0, 0%, 20%);
 $gradient: linear-gradient(var(--primary-color), #e91e63);
-
+$disabled: hsl(0, 0%, 60%);
 :root {
   --secondary-color: #{$secondary-color};
   --primary-color: #{$primary-color};
