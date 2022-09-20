@@ -14,7 +14,8 @@ export default class ErrorBoundary extends Component {
       // You can render any custom fallback UI
       return (
         <div className="center">
-          <h1>Something went wrong.</h1>
+          <h2>Something went wrong.</h2>
+          <p>If error persists, contact developer</p>
         </div>
       );
     }

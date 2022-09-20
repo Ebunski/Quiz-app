@@ -46,7 +46,7 @@ export default function SingleNumber({
 
         <ul className="card__answerBox">{optionsList}</ul>
         <button
-          className="card__button"
+          className={`card__button--${selectedOption ? "active" : "disabled"}`}
           disabled={!selectedOption}
           onClick={handleCheck}
         >

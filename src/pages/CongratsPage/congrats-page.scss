@@ -1,9 +1,12 @@
 @use "../../scss/style.scss" as *;
 
 .congrats {
+  background: $background-color;
   &__container {
     min-height: 100vh;
     @include flex(row, center);
+    width: 90vw;
+    margin-inline: auto;
   }
   &__card {
     min-width: 300px;
@@ -12,7 +15,7 @@
     border-radius: $rounded-md;
     color: $on-primary;
     @include flex(column);
-
+    @include clay2;
     gap: $spacing-xl;
   }
   &__text {
@@ -27,5 +30,23 @@
     &:hover {
       @include pressed;
     }
+  }
+}
+
+.table {
+  display: flex(column, center);
+  @include clay2;
+  padding-block: $spacing-md;
+
+  tr {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: $spacing-md;
+    margin-bottom: $spacing-md;
+  }
+  td,
+  th {
+    place-self: center;
+    gap: $spacing-lg;
   }
 }

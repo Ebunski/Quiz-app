@@ -5,7 +5,7 @@ export default function useLocalStorage(key = "", initialValue = "") {
 
   function getData() {
     const savedValue = localStorage.getItem(key);
-    if (savedValue !== undefined) return JSON.parse(savedValue);
+    if (savedValue !== (undefined || null)) return JSON.parse(savedValue);
     if (initialValue instanceof Function) return initialValue();
     return initialValue;
   }

@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./welcome-page.scss";
 import SelectionPage from "../SelectionPage/SelectionPage";
 import { Link as LinkScroll } from "react-scroll";
+import { useQuizContext } from "../../contexts/quizContext";
 
-export default function WelcomePage() {
+function WelcomePage() {
+  const { reset } = useQuizContext();
+
+  useEffect(() => {
+   reset();
+   console.log("resetting..")
+  }, [reset]);
   return (
     <main>
       <section className="welcome">
@@ -25,3 +32,4 @@ export default function WelcomePage() {
     </main>
   );
 }
+export default React.memo(WelcomePage);

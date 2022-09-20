@@ -10,10 +10,6 @@ export default function useTimer(duration, shouldRun, fn, deps) {
   const intervalRef = useRef();
   const hasRenderedInitially = useRef(false);
 
-  useEffect(() => {
-    console.log(remainingTime);
-  }, [remainingTime]);
-
   const setInt = useCallback(() => {
     intervalRef.current = setInterval(() => {
       setRemainingTime((prev) => prev - 1);
@@ -21,8 +17,12 @@ export default function useTimer(duration, shouldRun, fn, deps) {
   }, []);
 
   useEffect(() => {
+    console.log(remainingTime);
+  }, [remainingTime]);
+
+  useEffect(() => {
     if (remainingTime === 0) {
-      console.log("timeup");
+      func();
       clearInterval(intervalRef.current);
       return;
     }

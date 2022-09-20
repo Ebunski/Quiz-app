@@ -4,15 +4,25 @@ import SingleNumber from "../../components/quiz/SingleNumber/SingleNumber";
 import Error from "../../components/Error";
 import { useQuizContext } from "../../contexts/quizContext";
 import { useNavigate } from "react-router-dom";
+import useCountdown from "../../hooks/useCountdown";
 
 export default function QuizPage() {
-  const { remainingTime, response, index, gameOver, error } = useQuizContext();
-
+  const { response, index, gameOver, error, compileResult, setGameOver } =
+    useQuizContext();
+  const { remainingTime } = useCountdown(
+    20,
+    response?.length > 0,
+    () => setGameOver(true),
+    index
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (gameOver) navigate("/congrats", { replace: true });
-  }, [gameOver, navigate]);
+    if (gameOver) {
+      navigate("/congrats", { replace: true });
+      compileResult();
+    }
+  }, [gameOver, navigate, compileResult]);
 
   /*-------states-------------------------------*/
 

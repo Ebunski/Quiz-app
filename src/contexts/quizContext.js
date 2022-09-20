@@ -1,19 +1,18 @@
-import React, { useState, useContext, createContext } from "react";
+import React, { useState, useContext, createContext, useCallback } from "react";
 import { categories, difficulty } from "../data";
 import useTab from "../hooks/useTab";
 import useFetch from "../hooks/useFetch";
-import useCountdown from "../hooks/useCountdown";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 const QuizContext = createContext();
 
 export const QuizProvider = ({ children }) => {
   const [gameOver, setGameOver] = useState(false);
-  const [user, setUser] = useState("");
+  const [currUser, setCurrUser] = useLocalStorage("current-user", {});
   const [score, setScore] = useLocalStorage("score", 0);
   const [highScores, setHighScores] = useLocalStorage("high-scores", []);
   const [selectedOption, setSelectedOption] = useState("");
-  const [isAnswered, setIsAnswered] = useState(false);
+  const [isAnswered, setIsAnswered] = useLocalStorage("is-answered", false);
 
   const { result, loading, error, setShouldFetch, setUrl } = useFetch();
   const response = result?.results;
@@ -21,28 +20,34 @@ export const QuizProvider = ({ children }) => {
   const { handleNext, index, setIndex } = useTab(response, () =>
     setGameOver(true)
   );
-  const { remainingTime } = useCountdown(
-    20,
-    response?.length > 0,
-    () => setGameOver(true),
-    index
-  );
 
   /*========================states================================*/
 
-  function handleSelection({ user, category, difficulty }) {
-    const url = `https://opentdb.com/api.php?amount=10${
-      category && `&category=${category}`
-    }${difficulty && `&difficulty=${difficulty}`}&type=multiple`;
-    setUrl(url);
-    setUser(user);
-    setShouldFetch(true);
+  const reset = useCallback(() => {
+    setShouldFetch(false);
     setScore(0);
     setSelectedOption("");
     setIsAnswered(false);
     setGameOver(false);
     setIndex(0);
+    setCurrUser({});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function handleSelection({ user, category, difficulty }) {
+    const url = `https://opentdb.com/api.php?amount=10${
+      category && `&category=${category}`
+    }${difficulty && `&difficulty=${difficulty}`}&type=multiple`;
+    setCurrUser({
+      name: user,
+      category: category || "random",
+      difficulty: difficulty || "random",
+    });
+    setUrl(url);
+    setShouldFetch(true);
+    window.location.pathname = "/quiz";
   }
+
   function handleClick(option) {
     setSelectedOption(option);
   }
@@ -63,6 +68,14 @@ export const QuizProvider = ({ children }) => {
     }
   }
 
+  function compileResult() {
+    setHighScores((prev) =>
+      [...prev, { ...currUser, score: score }]
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 5)
+    );
+  }
+
   return (
     <QuizContext.Provider
       value={{
@@ -76,12 +89,14 @@ export const QuizProvider = ({ children }) => {
         selectedOption,
         isAnswered,
         index,
-        user,
-        remainingTime,
+        currUser,
+        highScores,
+        reset,
         handleSelection,
         handleClick,
         handleCheck,
         setGameOver,
+        compileResult,
       }}
     >
       {children}

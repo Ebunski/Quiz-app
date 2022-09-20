@@ -6,24 +6,13 @@ import useForm from "../../hooks/useForm";
 
 export default function SelectionPage() {
   const navigate = useNavigate();
-  const { categories, difficulty, handleSelection } = useQuizContext();
-  const {
-    shouldNavigate,
-    handleSubmit,
-    handleChange,
-    formData,
-    setShouldNavigate,
-  } = useForm(handleSelection, ["user", "category", "difficulty"]);
-  useEffect(() => {
-    if (shouldNavigate) {
-      setTimeout(() => {
-        navigate("/quiz");
-      }, 1000);
-    }
-  }, [shouldNavigate, navigate]);
-  useEffect(() => {
-    setShouldNavigate(false);
-  }, [setShouldNavigate]);
+  const { currUser, categories, difficulty, handleSelection } =
+    useQuizContext();
+  const { handleSubmit, handleChange, formData } = useForm(handleSelection, [
+    "user",
+    "category",
+    "difficulty",
+  ]);
 
   /*========================states================================*/
   const categoryList = categories.map((x) => (
