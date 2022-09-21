@@ -34,11 +34,16 @@
     border: 2px solid transparent;
     border-radius: $rounded-md;
     @include box-shadow-sm;
-
     padding-inline: $spacing-xl;
+    &::before {
+      @include pseudo;
+      background: linear-gradient(225deg, var(--primary-color), #e91e63);
+      transform-origin: left;
+      transform: scaleX(0);
+    }
     &--active {
       @extend .card__button;
-      background: linear-gradient(225deg, var(--primary-color), #e91e63);
+      transform: scaleX(1);
       &:hover {
         box-shadow: none;
         border: 2px solid rgba(255, 255, 255, 0.4);

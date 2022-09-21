@@ -6,6 +6,7 @@
     min-height: 100vh;
     @include flex(row, center);
     width: 90vw;
+    gap: $spacing-lg;
     margin-inline: auto;
   }
   &__card {
@@ -48,5 +49,11 @@
   th {
     place-self: center;
     gap: $spacing-lg;
+  }
+
+  &__tr--active {
+    background-color: $secondary-color;
+    color: $on-primary;
+    padding-block: $spacing-sm;
   }
 }

@@ -11,17 +11,24 @@ export default function CongratsPage() {
   function giveComment() {
     if (score < 3)
       return `Don't be sad ${currUser?.name}, give it another try.`;
-    if (score < 6)
-      return `Wow ${currUser?.name} you did better than i thought! Think you can do better?`;
-    if (score < 9)
-      return `You did great ${currUser?.name}! Too easy uh?, again`;
-    if (score <= 10)
-      return `You are a genius ${currUser?.name}! ${(<i>or lucky perhaps</i>)}`;
+    if (score < 6) return `Niceeeee ${currUser?.name}, can you better that?`;
+    if (score < 9) return `Awesome ${currUser?.name}!`;
+    if (score <= 10) return `You are a genius ${currUser?.name}!`;
   }
 
-  console.log(categories.find((cat) => cat.id === 13).name);
+  function giveActiveClass(x) {
+    if (
+      x.score === score &&
+      x.name === currUser.name &&
+      x.category === currUser.category &&
+      x.difficulty === currUser.difficulty
+    )
+      return "active";
+    return "old";
+  }
+
   const highScoreList = highScores.map((x, index) => (
-    <tr key={index}>
+    <tr className={`table__tr--${giveActiveClass(x)}`} key={index}>
       <td>{index + 1}</td>
       <td>{x.name}</td>
       <td>
@@ -38,7 +45,7 @@ export default function CongratsPage() {
       <Confetti width={width} height={height} />
       <div className="congrats__card">
         <h2 className="congrats__result">
-          {score > (highScores.length > 0 && highScores[0].score)
+          {currUser.score > (highScores.length > 0 && highScores[0].score)
             ? `New High Score! ${score * 10}%`
             : `You scored ${score * 10}%`}
         </h2>
