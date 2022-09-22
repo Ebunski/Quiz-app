@@ -63,6 +63,9 @@
   &__button {
     border: transparent;
     color: var(--on-surface);
+    &:disabled {
+      color: rgba(0, 0, 0, 0.2);
+    }
     &:hover {
       @include depression2($secondary-color);
       // @include clay3($secondary-color);

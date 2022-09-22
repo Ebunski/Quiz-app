@@ -93,11 +93,7 @@ export default function SelectionPage() {
           </select>
         </fieldset>
 
-        <button
-          className="selection__button"
-          disabled={!formData.user}
-          style={{ color: !formData.user ? "gray" : "" }}
-        >
+        <button className="selection__button" disabled={!formData.user}>
           Let's Go
         </button>
       </form>
