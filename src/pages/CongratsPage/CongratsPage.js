@@ -28,18 +28,21 @@ export default function CongratsPage() {
   }
 
   const highScoreList = highScores?.map((x, index) => {
-    const category =
-      x.category === "random"
-        ? x.category
-        : categories.find((cat) => cat.id === +x.category).name;
-    const slicedCategory = category.includes("Entertainment")
-      ? category.slice(15)
-      : category;
+    function getCategory() {
+      const category =
+        x.category === "random"
+          ? x.category
+          : categories.find((cat) => cat.id === +x.category).name;
+      if (category.includes("Entertainment")) return category.slice(15);
+      if (category.includes("Science:")) return category.slice(9);
+      return category;
+    }
+
     return (
       <tr className={`table__tr--${giveActiveClass(x)}`} key={index}>
         <td>{index + 1}</td>
         <td>{x.name}</td>
-        <td>{slicedCategory}</td>
+        <td>{getCategory()}</td>
         <td>{x.difficulty}</td>
         <td>{x.score * 10}%</td>
       </tr>

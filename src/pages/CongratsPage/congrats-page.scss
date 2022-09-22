@@ -47,7 +47,10 @@
     grid-template-columns: repeat(5, 1fr);
     gap: $spacing-sm;
     margin-bottom: $spacing-md;
-    padding-left: $spacing-sm;
+  
+  }
+  tr,thead{
+      padding-left: $spacing-sm;
   }
   td,
   th {
