@@ -52,7 +52,7 @@ export const QuizProvider = ({ children }) => {
         handleNext();
         setIsAnswered(false);
         setSelectedOption("");
-      }, 1000);
+      }, 1500);
     }
   }
 

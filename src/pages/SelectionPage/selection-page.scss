@@ -2,7 +2,7 @@
 
 .selection {
   min-height: 100vh;
-  background: var(--secondary-color);
+  background: $selection-background;
   @include flex(row, center);
   &__form {
     @include flex(row, center);
@@ -10,7 +10,7 @@
 
     padding: $spacing-3xl $spacing-md;
     gap: $spacing-lg;
-    background: $secondary-color;
+    background: $selection-background;
     @include clay2;
     color: var(--on-surface);
     border-radius: 30px;
@@ -61,13 +61,14 @@
     border: none;
   }
   &__button {
+    background: rgba(255, 255, 255, 1);
     border: transparent;
-    color: var(--on-surface);
+    color: #000;
     &:disabled {
       color: rgba(0, 0, 0, 0.2);
     }
     &:hover {
-      @include depression2($secondary-color);
+      @include depression2(rgba(0, 0, 0, 0.3));
       // @include clay3($secondary-color);
     }
   }

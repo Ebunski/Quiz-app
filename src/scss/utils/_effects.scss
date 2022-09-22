@@ -12,7 +12,7 @@
   box-shadow: -15px 30px 50px rgba(0, 0, 0.5);
 }
 @mixin neo {
-  box-shadow: 13px 13px 22px rgba(181, 193, 201, 0.5), -13px -13px 22px #ffffff;
+  box-shadow: 13px 13px 22px rgba(181, 193, 201, 0.3), -13px -13px 22px #ffffff;
 }
 @mixin neo2($color) {
   box-shadow: 15px 15px 20px rgb(0, 0, 0, 0.1), -15px -15px 20px $color;
@@ -21,8 +21,7 @@
   box-shadow: 2px 2px 5px rgb(0, 0, 0, 0.1), -3px -3px 5px $color;
 }
 @mixin depression($color) {
-  box-shadow: inset 5px 5px 10px darken($color, 5%),
-    inset -5px -5px 10px lighten($color, 5%);
+  box-shadow: inset 5px 5px 10px $color inset -5px -5px 10px $color;
 }
 @mixin depression2($color) {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px -5px 10px $color,
