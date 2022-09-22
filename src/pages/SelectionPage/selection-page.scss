@@ -68,7 +68,7 @@
       color: rgba(0, 0, 0, 0.2);
     }
     &:hover {
-      @include depression2(rgba(0, 0, 0, 0.3));
+      @include depression2(rgba(0, 0, 0, 0.1));
       // @include clay3($secondary-color);
     }
   }
