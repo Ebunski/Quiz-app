@@ -18,7 +18,7 @@ export default function useFetch() {
       setResponse(response.data.results);
       setError(null);
     } catch (error) {
-      setError(error.response);
+      setError(error);
       setResponse([]);
       console.log(error);
     } finally {

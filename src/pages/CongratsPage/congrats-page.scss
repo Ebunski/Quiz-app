@@ -2,6 +2,7 @@
 
 .congrats {
   background: $background-color;
+
   &__container {
     min-height: 100vh;
     @include flex(row, center);
@@ -10,7 +11,7 @@
     margin-inline: auto;
   }
   &__card {
-    min-width: 300px;
+    min-width: 250px;
     background: $secondary-color;
     padding: $spacing-xl;
     border-radius: $rounded-md;
@@ -18,6 +19,7 @@
     @include flex(column);
     @include box-shadow-sm;
     gap: $spacing-xl;
+    text-align: center;
   }
   &__text {
     color: $on-primary;
@@ -38,18 +40,23 @@
   display: flex(column, center);
   @include box-shadow-sm;
   padding-block: $spacing-md;
+  border-radius: $rounded-md;
 
   tr {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: $spacing-md;
+    gap: $spacing-sm;
     margin-bottom: $spacing-md;
+    padding-left: $spacing-sm;
   }
   td,
   th {
     place-self: flex-start;
     gap: $spacing-lg;
-    padding-left: $spacing-sm;
+    font-size: $font-sm;
+    @include breakpoint-up(medium) {
+      font-size: $font-base;
+    }
   }
 
   td {

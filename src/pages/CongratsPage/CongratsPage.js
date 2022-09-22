@@ -26,20 +26,25 @@ export default function CongratsPage() {
       return "active";
     return "old";
   }
- 
-  const highScoreList = highScores?.map((x, index) => (
-    <tr className={`table__tr--${giveActiveClass(x)}`} key={index}>
-      <td>{index + 1}</td>
-      <td>{x.name}</td>
-      <td>
-        {x.category === "random"
-          ? x.category
-          : categories.find((cat) => cat.id === +x.category).name}
-      </td>
-      <td>{x.difficulty}</td>
-      <td>{x.score * 10}%</td>
-    </tr>
-  ));
+
+  const highScoreList = highScores?.map((x, index) => {
+    const category =
+      x.category === "random"
+        ? x.category
+        : categories.find((cat) => cat.id === +x.category).name;
+    const slicedCategory = category.includes("Entertainment")
+      ? category.slice(15)
+      : category;
+    return (
+      <tr className={`table__tr--${giveActiveClass(x)}`} key={index}>
+        <td>{index + 1}</td>
+        <td>{x.name}</td>
+        <td>{slicedCategory}</td>
+        <td>{x.difficulty}</td>
+        <td>{x.score * 10}%</td>
+      </tr>
+    );
+  });
   return (
     <div className="congrats__container">
       <Confetti width={width} height={height} />

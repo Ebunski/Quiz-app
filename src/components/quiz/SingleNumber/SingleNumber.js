@@ -13,7 +13,7 @@ export default function SingleNumber({
   number,
   total,
 }) {
-  const { handleCheck, selectedOption } = useQuizContext();
+  const { handleCheck, isAnswered, selectedOption } = useQuizContext();
 
   const answers = incorrect_answers.concat(correct_answer);
   const randomAnswers = answers.sort();
@@ -50,7 +50,7 @@ export default function SingleNumber({
           disabled={!selectedOption}
           onClick={handleCheck}
         >
-          Check
+          {isAnswered ? "Checking..." : "Check"}
         </button>
       </div>
     </article>
