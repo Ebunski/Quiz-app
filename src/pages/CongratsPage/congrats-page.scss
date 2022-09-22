@@ -16,7 +16,7 @@
     border-radius: $rounded-md;
     color: $on-primary;
     @include flex(column);
-    @include clay2;
+    @include box-shadow-sm;
     gap: $spacing-xl;
   }
   &__text {
@@ -36,7 +36,7 @@
 
 .table {
   display: flex(column, center);
-  @include clay2;
+  @include box-shadow-sm;
   padding-block: $spacing-md;
 
   tr {
@@ -47,10 +47,15 @@
   }
   td,
   th {
-    place-self: center;
+    place-self: flex-start;
     gap: $spacing-lg;
+    padding-left: $spacing-sm;
   }
 
+  td {
+    word-break: break-word;
+    word-wrap: break-word;
+  }
   &__tr--active {
     background-color: $secondary-color;
     color: $on-primary;

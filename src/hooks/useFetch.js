@@ -30,7 +30,6 @@ export default function useFetch() {
   useEffect(() => {
     if (runEffect.current && url && shouldFetch) {
       getData();
-      console.log("getting data...");
     }
 
     runEffect.current = true;

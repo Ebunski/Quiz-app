@@ -64,4 +64,10 @@
       // @include clay3($secondary-color);
     }
   }
+  input ~ span {
+    display: none;
+  }
+  input:invalid[focused="true"] ~ span {
+    display: block;
+  }
 }

@@ -12,7 +12,6 @@ export default function useLocalStorage(key = "", initialValue = "") {
 
   const storeData = useCallback(() => {
     localStorage.setItem(key, JSON.stringify(data));
-    console.log("setting local...");
   }, [key, data]);
 
   useEffect(() => {

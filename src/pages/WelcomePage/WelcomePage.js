@@ -8,8 +8,7 @@ function WelcomePage() {
   const { reset } = useQuizContext();
 
   useEffect(() => {
-   reset();
-   console.log("resetting..")
+    reset();
   }, [reset]);
   return (
     <main>

@@ -7,11 +7,10 @@ import useForm from "../../hooks/useForm";
 export default function SelectionPage() {
   const { categories, difficulty, setCurrUser, setUrl, setShouldFetch } =
     useQuizContext();
-  const { handleSubmit, handleChange, formData } = useForm(handleSelection, [
-    "user",
-    "category",
-    "difficulty",
-  ]);
+  const { handleSubmit, handleChange, formData, blurred, setBlurred } = useForm(
+    handleSelection,
+    ["user", "category", "difficulty"]
+  );
   const navigate = useNavigate();
 
   /*========================states================================*/
@@ -37,9 +36,9 @@ export default function SelectionPage() {
     });
     setUrl(url);
     setShouldFetch(true);
-   setTimeout(()=> {
-    navigate("/quiz");
-   },500) 
+    setTimeout(() => {
+      navigate("/quiz");
+    }, 500);
   }
 
   return (
@@ -52,7 +51,11 @@ export default function SelectionPage() {
           placeholder="Enter nickname"
           value={formData.user || ""}
           onChange={handleChange}
+          focused={blurred.toString()}
+          onBlur={() => setBlurred(true)}
+          required
         />
+        <span>This field is required! </span>
         <fieldset className="selection__group">
           <label className="selection__label" htmlFor="category">
             category:

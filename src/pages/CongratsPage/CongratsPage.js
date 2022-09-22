@@ -26,15 +26,15 @@ export default function CongratsPage() {
       return "active";
     return "old";
   }
-
-  const highScoreList = highScores.map((x, index) => (
+ 
+  const highScoreList = highScores?.map((x, index) => (
     <tr className={`table__tr--${giveActiveClass(x)}`} key={index}>
       <td>{index + 1}</td>
       <td>{x.name}</td>
       <td>
         {x.category === "random"
           ? x.category
-          : categories.find((cat) => cat.id === 13).name}
+          : categories.find((cat) => cat.id === +x.category).name}
       </td>
       <td>{x.difficulty}</td>
       <td>{x.score * 10}%</td>

@@ -1,6 +1,12 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 
-export default function useTimer(duration, shouldRun, fn, deps) {
+export default function useCountdown(
+  duration,
+  shouldRun,
+  shouldPause,
+  fn,
+  deps
+) {
   const [remainingTime, setRemainingTime] = useState(+duration);
 
   const func = useCallback(() => {
@@ -16,20 +22,21 @@ export default function useTimer(duration, shouldRun, fn, deps) {
     }, 1000);
   }, []);
 
-  useEffect(() => {
-    console.log(remainingTime);
-  }, [remainingTime]);
+  const clearInt = useCallback(() => {
+    clearInterval(intervalRef.current);
+  }, []);
 
   useEffect(() => {
     if (remainingTime === 0) {
       func();
-      clearInterval(intervalRef.current);
+      clearInt();
       return;
     }
+    if (shouldPause) clearInt();
     if (shouldRun) setInt();
 
-    return () => clearInterval(intervalRef.current);
-  }, [remainingTime, setInt, func, shouldRun]);
+    return () => clearInt();
+  }, [remainingTime, setInt, func, shouldRun, clearInt, shouldPause]);
 
   useEffect(() => {
     if (hasRenderedInitially) {
@@ -37,5 +44,5 @@ export default function useTimer(duration, shouldRun, fn, deps) {
     }
     hasRenderedInitially.current = true;
   }, [duration, deps]);
-  return { remainingTime };
+  return { remainingTime, clearInt };
 }

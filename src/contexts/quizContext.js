@@ -20,7 +20,7 @@ export const QuizProvider = ({ children }) => {
   const { handleNext, index, setIndex } = useTab(response, () =>
     setGameOver(true)
   );
-  console.log(response);
+
   /*========================states================================*/
 
   const reset = useCallback(() => {
@@ -43,16 +43,16 @@ export const QuizProvider = ({ children }) => {
   function handleCheck() {
     if (!selectedOption) return;
 
-    if (isAnswered) {
-      handleNext();
-      setIsAnswered(false);
-      setSelectedOption("");
-    }
     if (!isAnswered) {
       if (selectedOption === response[index].correct_answer) {
         setScore((prev) => prev + 1);
       }
       setIsAnswered(true);
+      setTimeout(() => {
+        handleNext();
+        setIsAnswered(false);
+        setSelectedOption("");
+      }, 1000);
     }
   }
 

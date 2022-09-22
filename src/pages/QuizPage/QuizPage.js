@@ -7,11 +7,19 @@ import { useNavigate } from "react-router-dom";
 import useCountdown from "../../hooks/useCountdown";
 
 export default function QuizPage() {
-  const { response, index, gameOver, error, compileResult, setGameOver } =
-    useQuizContext();
+  const {
+    response,
+    index,
+    gameOver,
+    error,
+    compileResult,
+    setGameOver,
+    isAnswered,
+  } = useQuizContext();
   const { remainingTime } = useCountdown(
     30,
     response?.length > 0,
+    isAnswered,
     () => setGameOver(true),
     index
   );
