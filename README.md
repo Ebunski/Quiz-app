@@ -32,8 +32,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [https://quiz-app-oe.netlify.app/](https://quiz-app-oe.netlify.app/)
+- Live Site URL: [https://quiz-app-oe.netlify.app/](https://quiz-app-oe.netlify.app/)
 
 ### Built with
 
@@ -51,15 +51,11 @@ Users should be able to:
 
 1. React:
 
-How to use setInterval and clearInterval - cleanup
-Dynamically render prev,active and next classes
-Accounted for current index being 0 in calculating previous - checking if its index === data.length-1 (end-of-array error)
+
 
 2. Css
 
-Slides are initially stacked due to the absolute class of article
-Dynamic styles with transform properties are used to place them left or right - activeSlide,lastSlide,nextSlide(default)
-Opacity and overflow to hide.
+
 
 Overall it was a very wonderful project.
 
