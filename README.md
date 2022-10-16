@@ -32,7 +32,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [https://quiz-app-oe.netlify.app/](https://quiz-app-oe.netlify.app/)
+- Solution URL: [https://github.com/Ebunski/Quiz-app/](https://quiz-app-oe.netlify.app/)
 - Live Site URL: [https://quiz-app-oe.netlify.app/](https://quiz-app-oe.netlify.app/)
 
 ### Built with
